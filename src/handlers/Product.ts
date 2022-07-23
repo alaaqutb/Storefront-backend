@@ -27,8 +27,8 @@ const create = async (req: Request, res: Response): Promise<void> => {
 };
 
 const productRoutes = (app: express.Application) => {
-  app.get('/products', index);
-  app.get('/products/:id', show);
+  app.get('/products', verifyAuthToken, index);
+  app.get('/products/:id', verifyAuthToken, show);
   app.post('/products', verifyAuthToken, create);
 };
 

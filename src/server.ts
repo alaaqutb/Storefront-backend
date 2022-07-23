@@ -4,7 +4,7 @@ import userRoutes from './handlers/User';
 import productRoutes from './handlers/Product';
 import orderRoutes from './handlers/Order';
 
-const app = express();
+export const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());

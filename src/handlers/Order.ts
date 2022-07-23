@@ -6,12 +6,12 @@ import verifyAuthToken from './User'
 
 const index = async (_req: Request, res: Response) => {
   const orders = await OrderModel.index();
-  res.json(orders);
+  res.json({orders});
 };
 
 const show = async (req: Request, res: Response) => {
   const order = await OrderModel.show(req.params.id);
-  res.json(order);
+  res.json({order});
 };
 
 const create = async (req: Request, res: Response): Promise<void> => {
@@ -44,10 +44,10 @@ const getCurrentOrders = async (
   }
 };
 const orderRoutes = (app: express.Application) => {
-  app.get('/orders', index);
+  app.get('/orders', verifyAuthToken, index);
   app.get('/orders/:id', show);
   app.get('/currentorder/user/:id', verifyAuthToken, getCurrentOrders);
-  app.post('/orders', create);
+  app.post('/orders', verifyAuthToken, create);
 };
 
 export default orderRoutes;
