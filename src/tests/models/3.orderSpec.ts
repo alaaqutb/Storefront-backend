@@ -1,4 +1,4 @@
-import { Order, OrderModel, Status } from './../../models/Order';
+import { OrderModel, Status } from './../../models/Order';
 
 describe('Order', () => {
   it('index should be defined', () => {
@@ -19,7 +19,7 @@ describe('Order', () => {
 
   it('Get All Orders', async () => {
     await new OrderModel().create(
-      { status: Status.active },
+      { status: Status.complete },
       { products: [{ id: 1, quantity: 5 }], user_id: 1 }
     );
     const orders = await OrderModel.index();

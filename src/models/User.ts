@@ -10,7 +10,7 @@ export type User = {
   first_name: string;
   last_name: string;
   username: string;
-  password: string;
+  password?: string;
 };
 
 export class UserModel {
@@ -32,7 +32,7 @@ export class UserModel {
   static async show(id: string): Promise<User> {
     try {
       const sql =
-        'SELECT first_name,last_name, username FROM users WHERE id=($1)';
+        'SELECT first_name, last_name, username FROM users WHERE id=($1)';
 
       const conn = await client.connect();
 
@@ -48,9 +48,9 @@ export class UserModel {
   static async create(u: User): Promise<User> {
     try {
       const sql =
-        'INSERT INTO users (first_name, last_name, username, password) VALUES($1, $2, $3, $4) RETURNING id, first_name, last_name, username, password';
+        'INSERT INTO users (first_name, last_name, username, password) VALUES($1, $2, $3, $4) RETURNING id, first_name, last_name, username';
       const hashed = bcrypt.hashSync(
-        u.password + BCRYPT_PASSWORD,
+        u.password as string + BCRYPT_PASSWORD,
         parseInt(SALT_ROUNDS as string)
       );
       const conn = await client.connect();

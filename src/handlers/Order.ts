@@ -1,8 +1,9 @@
-import { UserModel } from './../models/User';
 import { Pruchase } from './../models/Pruchase';
 import express, { Request, Response } from 'express';
 import { Order, OrderModel } from '../models/Order';
 import verifyAuthToken from './User'
+
+const orderRoutes = express.Router();
 
 const index = async (_req: Request, res: Response) => {
   const orders = await OrderModel.index();
@@ -27,7 +28,7 @@ const create = async (req: Request, res: Response): Promise<void> => {
     res.json({ p: nawOrder });
   } catch (err) {
     res.status(400);
-    res.json(err);
+    res.json({err});
   }
 };
 
@@ -43,11 +44,10 @@ const getCurrentOrders = async (
     res.status(404).json({ response: 'Not Found' });
   }
 };
-const orderRoutes = (app: express.Application) => {
-  app.get('/orders', verifyAuthToken, index);
-  app.get('/orders/:id', show);
-  app.get('/currentorder/user/:id', verifyAuthToken, getCurrentOrders);
-  app.post('/orders', verifyAuthToken, create);
-};
+
+orderRoutes.get('/orders', verifyAuthToken, index);
+orderRoutes.get('/orders/:id', show);
+orderRoutes.get('/currentorder/user/:id', verifyAuthToken, getCurrentOrders);
+orderRoutes.post('/orders', verifyAuthToken, create);
 
 export default orderRoutes;

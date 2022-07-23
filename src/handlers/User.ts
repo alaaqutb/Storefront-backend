@@ -2,7 +2,8 @@ import express, { Request, Response, NextFunction } from 'express';
 import { User, UserModel } from '../models/User';
 import jwt, { Secret } from 'jsonwebtoken';
 
-//const store= new my_user();
+const userRoutes = express.Router();
+
 export const verifyAuthToken = (
   req: Request,
   res: Response,
@@ -20,12 +21,12 @@ export const verifyAuthToken = (
 
 const index = async (_req: Request, res: Response) => {
   const users = await UserModel.index();
-  res.json(users);
+  res.json({users});
 };
 
 const show = async (req: Request, res: Response) => {
   const user = await UserModel.show(req.params.id);
-  res.json(user);
+  res.json({user});
 };
 
 const create = async (req: Request, res: Response): Promise<void> => {
@@ -40,7 +41,7 @@ const create = async (req: Request, res: Response): Promise<void> => {
     res.json({ u: nawUser });
   } catch (err) {
     res.status(400);
-    res.json(err);
+    res.json({err});
   }
 };
 
@@ -73,11 +74,9 @@ const authenticate = async (
   }
 };
 
-const userRoutes = (app: express.Application) => {
-  app.get('/users', verifyAuthToken, index);
-  app.get('/users/:id', verifyAuthToken, show);
-  app.post('/users', verifyAuthToken, create);
-  app.post('/users/login', authenticate);
-};
+userRoutes.get('/users', verifyAuthToken, index);
+userRoutes.get('/users/:id', verifyAuthToken, show);
+userRoutes.post('/users', create);
+userRoutes.post('/users/login', authenticate);
 
 export default userRoutes;

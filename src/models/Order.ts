@@ -2,8 +2,8 @@ import client from '../database';
 import { Pruchase, PruchaseModel } from './Pruchase';
 
 export enum Status {
-  'active',
-  'complete',
+  'active'= 'active',
+  'complete'= 'complete',
 }
 
 export type Order = {
