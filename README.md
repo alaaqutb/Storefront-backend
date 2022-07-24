@@ -5,14 +5,14 @@
 ### Environment variables:
  Configure .env (.env-example)
 ### Setup db:
- connect to the default postgres database
-- ```psql -U postgres```
- create two databases dev and test database
-- ```CREATE DATABASE storefront;```
-- ```CREATE DATABASE storefronttest;```
- connect to the databases 
-- dev database ```\c storefront```
-- test database ```\c storefronttest```
+- connect to the default postgres database
+ ```psql -U postgres```
+- create two databases dev and test database
+ ```CREATE DATABASE storefront;```
+ ```CREATE DATABASE storefronttest;```
+- connect to the databases 
+ dev database ```\c storefront```
+ test database ```\c storefronttest```
 
   
 ### Package installation:
