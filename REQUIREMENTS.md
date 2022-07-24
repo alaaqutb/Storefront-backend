@@ -33,7 +33,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - last_name VARCHAR(100) NOT NULL
 - password TEXT NOT NULL
 
-#### Orders
+#### Order
 - id
 - status ENUM ('active', 'complete') NOT NULL
 

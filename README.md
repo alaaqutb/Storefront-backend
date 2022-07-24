@@ -2,18 +2,18 @@
 
 - Default port which database runs at is ```5432```, port of server ```3000```.
 
-## Environment variables:
+### Environment variables:
  in .env 
 
-## Setup db:
+### Setup db:
  create two databases
     - ```CREATE DATABASE storefront;```
     - ```CREATE DATABASE storefronttest;```
 
-## Package installation:
+### Package installation:
  ```npm install```
 
-## Scripts:
+### Scripts:
 - ```npm run watch```
 - ```npm run start```
 - ```npm run build```
