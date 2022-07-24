@@ -15,9 +15,9 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Create[POST]'/users'
 
 #### Orders
-- Index[GET]
-- Show[GET]
-- Create[POST]
+- Index[GET]'/orders'
+- Show[GET]'/orders/:id'
+- Create[POST]'/orders'
 - Current Order by user[GET]'currentorder/user/:id'
 
 ## Data Shapes
