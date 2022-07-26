@@ -89,7 +89,7 @@ export class UserModel {
       }
       return null;
     } catch (err) {
-      throw new Error(`Cannot find user: ${err}`);
+      throw new Error(`Could not add new User. Error: ${err}`);
     }
   }
 }
